@@ -36,6 +36,8 @@ class AnymalCFlatCfg( AnymalCRoughCfg ):
   
     class terrain( AnymalCRoughCfg.terrain ):
         mesh_type = 'plane'
+        static_friction = 0.2
+        dynamic_friction = 0.2
         measure_heights = False
   
     class asset( AnymalCRoughCfg.asset ):
