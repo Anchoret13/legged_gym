@@ -21,3 +21,12 @@ class GoIceCfg(LeggedRobotCfg):
 
     class domain_rand(LeggedRobotCfg.domain_rand):
         pass
+
+    class rewards(LeggedRobotCfg.rewards):
+        pass
+
+class IcePPO(LeggedRobotCfgPPO):
+    class runner(LeggedRobotCfgPPO.runner):
+        run_name = ''
+        experiment_name = 'ice'
+        load_run = -1

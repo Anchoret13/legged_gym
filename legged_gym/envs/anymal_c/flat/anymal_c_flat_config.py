@@ -36,8 +36,8 @@ class AnymalCFlatCfg( AnymalCRoughCfg ):
   
     class terrain( AnymalCRoughCfg.terrain ):
         mesh_type = 'plane'
-        static_friction = 0.2
-        dynamic_friction = 0.2
+        static_friction = 1.0
+        dynamic_friction = 1.0
         measure_heights = False
   
     class asset( AnymalCRoughCfg.asset ):
@@ -46,10 +46,19 @@ class AnymalCFlatCfg( AnymalCRoughCfg ):
     class rewards( AnymalCRoughCfg.rewards ):
         max_contact_force = 350.
         class scales ( AnymalCRoughCfg.rewards.scales ):
+            
             orientation = -5.0
             torques = -0.000025
             feet_air_time = 2.
             # feet_contact_forces = -0.01
+            
+            # tracking_lin_vel = 1.5
+            # tracking_ang_vel = 0.0
+            # lin_vel_z = -2.0
+            # ang_vel_xy = 0.0
+            # orientation = -0.
+            # torques = -0.000025
+            # feet_air_time = 2.
     
     class commands( AnymalCRoughCfg.commands ):
         heading_command = False
