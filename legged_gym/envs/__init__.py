@@ -42,6 +42,9 @@ from .go_w.go_w import GO_W
 from .go_w.go_w_config import go_w_cfg, go_w_cfgppo
 from .a1w.a1w import A1W
 from .a1w.a1w_config import A1wFlatCfg, A1wFlatCfgPPO
+from .go1.go1_config import Go1RoughCfg, Go1RoughCfgPPO
+from .go1_fw.go1_fw import Go1Fw
+from .go1_fw.go1_fw_config import Go1FwFlatCfg, Go1FwFlatCfgPPO
 
 import os
 
@@ -54,3 +57,5 @@ task_registry.register( "a1", LeggedRobot, A1RoughCfg(), A1RoughCfgPPO() )
 task_registry.register( "cassie", Cassie, CassieRoughCfg(), CassieRoughCfgPPO() )
 task_registry.register( "go_w", GO_W, go_w_cfg(), go_w_cfgppo())
 task_registry.register( "a1_w", A1W, A1wFlatCfg(), A1wFlatCfgPPO())
+task_registry.register( "go1", LeggedRobot, Go1RoughCfg(), Go1RoughCfgPPO() )
+task_registry.register( "go1_fw", Go1Fw, Go1FwFlatCfg(), Go1FwFlatCfgPPO() )

@@ -60,11 +60,11 @@ class A1wFlatCfg( LeggedRobotCfg ):
 
     class control( LeggedRobotCfg.control ):
         # PD Drive parameters:
-        control_type = 'P'
+        control_type = 'WP'
         # stiffness = {'joint': 20.}  # [N*m/rad]
         # damping = {'joint': 0.5}     # [N*m*s/rad]
-        stiffness = {'joint': 20.0, 'roller': 0.000}  # [N*m/rad]
-        damping =   {'joint': 0.5, 'roller': 0.0000}     # [N*m*s/rad]
+        stiffness = {'joint': 20.0, 'roller': 0.01}  # [N*m/rad]
+        damping =   {'joint': 0.5, 'roller': 0.01}     # [N*m*s/rad]
         # action scale: target angle = actionScale * action + defaultAngle
         action_scale = 0.25
         # decimation: Number of control action updates @ sim DT per policy DT
@@ -99,6 +99,6 @@ class A1wFlatCfgPPO( LeggedRobotCfgPPO ):
         entropy_coef = 0.01
     class runner( LeggedRobotCfgPPO.runner ):
         run_name = ''
-        experiment_name = 'flat_a1'
+        experiment_name = 'a1_w'
 
   

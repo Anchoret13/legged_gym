@@ -42,3 +42,15 @@ from legged_gym.envs import LeggedRobot
 class A1W(LeggedRobot):
     def _create_envs(self):
         super()._create_envs()
+
+        """ Creates environments:
+             1. loads the robot URDF/MJCF asset,
+             2. For each environment
+                2.1 creates the environment, 
+                2.2 calls DOF and Rigid shape properties callbacks,
+                2.3 create actor with these properties and add them to the env
+             3. Store indices of different bodies of the robot
+        """
+
+    def _init_buffers(self):
+        return super()._init_buffers()
