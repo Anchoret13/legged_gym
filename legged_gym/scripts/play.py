@@ -39,10 +39,13 @@ import numpy as np
 import torch
 from moviepy.editor import ImageSequenceClip
 
+ENV_NUM = 10
+
+
 def play(args):
     env_cfg, train_cfg = task_registry.get_cfgs(name=args.task)
     # override some parameters for testing
-    env_cfg.env.num_envs = min(env_cfg.env.num_envs, 1)
+    env_cfg.env.num_envs = min(env_cfg.env.num_envs, ENV_NUM)
     env_cfg.terrain.num_rows = 1
     env_cfg.terrain.num_cols = 1
     env_cfg.terrain.curriculum = False
@@ -87,6 +90,22 @@ def play(args):
             camera_position += camera_vel * env.dt
             env.set_camera(camera_position, camera_position + camera_direction)
 
+        if TRACKING_ROBOT:
+            moving_camera_position = camera_position.copy()
+            init_position = env.base_init_state[:3].cpu().numpy()
+            robot_idx = int(ENV_NUM/3)
+            robot_position = env.root_states[robot_idx][:3].cpu().numpy()
+            # moving_camera_position = camera_position + (robot_position - init_position)
+            # direction = robot_position - init_position
+            # camera_look_at = camera_position + direction
+            # env.set_camera(moving_camera_position, camera_look_at)
+            desired_camera_position = camera_position + (robot_position - init_position)
+            moving_camera_position = moving_camera_position * 0.9 + desired_camera_position * 0.1
+            camera_look_at = robot_position
+            env.set_camera(desired_camera_position, camera_look_at)
+
+
+
         if i < stop_state_log:
             logger.log_states(
                 {
@@ -124,5 +143,6 @@ if __name__ == '__main__':
     EXPORT_POLICY = False
     RECORD_FRAMES = True
     MOVE_CAMERA = False
+    TRACKING_ROBOT = True
     args = get_args()
     play(args)
