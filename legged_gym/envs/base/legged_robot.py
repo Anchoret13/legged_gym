@@ -962,4 +962,7 @@ class LeggedRobot(BaseTask):
     def _reward_alive(self):
         return 1.
     
-    
+    def _reward_tracking_lin_vel_x(self):
+        # Reward for Tracking of linear velocity commands on x-axis
+        lin_vel_error = torch.square(self.commands[:, 0] - self.base_lin_vel[:, 0])
+        return torch.exp(-lin_vel_error/self.cfg.rewards.tracking_sigma)

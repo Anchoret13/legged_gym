@@ -73,8 +73,8 @@ class LeggedRobotCfg(BaseConfig):
         heading_command = True # if true: compute ang vel command from heading error
         class ranges:
             lin_vel_x = [-1.0, 1.0] # min max [m/s]
-            lin_vel_y = [-1.0, 1.0]   # min max [m/s]
-            ang_vel_yaw = [-1, 1]    # min max [rad/s]
+            lin_vel_y = [-0.0, 0.0]   # min max [m/s]
+            ang_vel_yaw = [-0, 0]    # min max [rad/s]
             heading = [-3.14, 3.14]
 
     class init_state:
@@ -177,8 +177,8 @@ class LeggedRobotCfg(BaseConfig):
     # viewer camera:
     class viewer:
         ref_env = 0
-        pos = [10, 0, 6]  # [m]
-        lookat = [11., 5, 3.]  # [m]
+        pos = [5.0, -4.5, 4]  # [m]
+        lookat = [5.0, 0.5, 1.]  # [m]
 
     class sim:
         dt =  0.005

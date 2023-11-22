@@ -33,7 +33,7 @@ from legged_gym.envs.base.legged_robot_config import LeggedRobotCfg, LeggedRobot
 class Go1FwFlatCfg( LeggedRobotCfg ):
     class env( LeggedRobotCfg.env):
         num_envs = 4096
-        num_observations = 241
+        num_observations = 54 # 241 when consider the terrain 
         num_actions = 14
     class init_state( LeggedRobotCfg.init_state ):
         pos = [0.0, 0.0, 0.3] # x,y,z [m]
@@ -60,6 +60,7 @@ class Go1FwFlatCfg( LeggedRobotCfg ):
         mesh_type = 'plane'
         # static_friction = 10.0
         # dynamic_friction = 1.0
+        measure_heights = False
 
     class control( LeggedRobotCfg.control ):
         # PD Drive parameters:
@@ -99,25 +100,20 @@ class Go1FwFlatCfg( LeggedRobotCfg ):
         soft_dof_pos_limit = 0.01
         self_dof_vel_limit = 0.01
         base_height_target = 0.25
-        # class scales( LeggedRobotCfg.rewards.scales ):
-        #     torques = 0.0001
-        #     tracking_lin_vel = 5.0
-        #     tracking_ang_vel = 0.0
-        #     dof_pos_limits = -10.0
-        #     orientation = 0.0
-        #     lin_vel_z = -0.0
-        #     ang_vel_xy = -0.001
-
-        #     # feet_air_time = 1.0
-        #     action_rate = -0.1
         class scales:
             tracking_ang_vel = 0.05
-            legs_energy = -1e-5
+            legs_energy = -1e-4
             torques = -0.001
-            lin_vel_x = 3.0
-            tracking_lin_vel = 1.5
+            # lin_vel_x = 3.0
+            tracking_lin_vel = 2.5
             lin_vel_z = -0.5
-            alive = 1.0
+            tracking_lin_vel_x = 2.5
+            base_height = -0.1
+            action_rate = -0.01
+            collision = -1.0
+            dof_pos_limits = -0.4
+            torque_limits = -0.01
+            dof_vel_limits = -10.0
 
 
     
